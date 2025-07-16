@@ -1,4 +1,12 @@
+import React, { useState } from 'react';
+
 const TodoList = ({ header, description }) => {
+  const [isChecked, setIsChecked] = useState(false);
+
+  const handleCheckboxChange = () => {
+    setIsChecked((prev) => !prev);
+  };
+
   return (
     <div
       style={{
@@ -13,6 +21,8 @@ const TodoList = ({ header, description }) => {
       {/* Checkbox in top-right */}
       <input
         type="checkbox"
+        checked={isChecked}
+        onChange={handleCheckboxChange}
         style={{
           position: 'absolute',
           top: '10px',
@@ -30,6 +40,7 @@ const TodoList = ({ header, description }) => {
           padding: '10px',
           borderRadius: '5px',
           margin: 0,
+          textDecoration: isChecked ? 'line-through' : 'none',
         }}
       >
         {header}
@@ -41,6 +52,7 @@ const TodoList = ({ header, description }) => {
           padding: '20px',
           borderRadius: '5px',
           marginTop: '10px',
+          textDecoration: isChecked ? 'line-through' : 'none',
         }}
       >
         {description}
